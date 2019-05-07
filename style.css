@@ -1,0 +1,27 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+a{
+    border:2px solid black;
+    text-decoration: none;
+    display: block;
+    float: left;
+    font-size: 30pt;
+    width:100%;
+    text-align: center;
+}
+.control{
+    background: rgba(0, 0, 255, 0.397);
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+.game{
+    padding-top: 200px;
+    padding-bottom: 200px;
+    background: rgba(0, 0, 255, 0.198);
+}
+
+
+

@@ -24,4 +24,8 @@ a{
 }
 
 
+.control:hover, .game:hover{
+    background: skyblue;
+    color:white;
+}
 

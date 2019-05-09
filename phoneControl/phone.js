@@ -17,7 +17,7 @@ function setup(){
     intY = height/2;
     x = width/2;
     y = height/2;
-
+    sizeC = width/5;
     var config = {
         apiKey: "AIzaSyDVeRD0P145hETu39Ryh4HM8rvlTSj4Kos",
         authDomain: "try2-70357.firebaseapp.com",
@@ -42,20 +42,20 @@ function draw(){
     left = false;
     up = false;
     down = false;
-    textSize(32);
-    text(x+'x  :  y'+y, 200, 200);
+    // textSize(32);
+    // text(x+'x  :  y'+y, 200, 200);
 
     // for controller place holder
-    fill(205,20,100,100);
+    // fill(205,20,100,100);
     ellipse(intX, intY, sizeC);
 
     noFill();
     stroke(255);
-    strokeWeight(10);
+    strokeWeight(sizeC/10);
     ellipse(intX, intY, sizeC);
     
     if(mouseIsPressed){
-        strokeWeight(50);
+        strokeWeight(sizeC/3);
         line(intX, intY, mouseX, mouseY);
         x = mouseX;
         y = mouseY;

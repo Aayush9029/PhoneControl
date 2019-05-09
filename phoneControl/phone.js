@@ -76,19 +76,19 @@ function draw(){
 
     if (mouseIsPressed){
         if(right){
-            console.log('right');
+            // console.log('right');
             sentData('right')
         }
         if(left){
-            console.log('left');
+            // console.log('left');
             sentData('left')
         }
         if(down){
-            console.log('down');
+            // console.log('down');
             sentData('down')
         }
         if(up){
-            console.log('up');
+            // console.log('up');
             sentData('up')
         }
     }
@@ -123,10 +123,10 @@ function sentData(direction){
         direction: direction
     }
     var result = ref.push(data, dataSent);
-    console.log(result.key);
+    // console.log(result.key);
 
     function dataSent(status){
-        console.log(status)
+        // console.log(status)
     }
 }
 

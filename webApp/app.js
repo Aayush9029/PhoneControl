@@ -1,10 +1,19 @@
 let database;
 let x = 200;
-let y = 200;
+let y ;
+let ex = 20;
+let ey = 20;
+let er = 20;
+let rwidth = 100;
+let rheight = 20;
+let exs = 2;
+let eys = 2;
+let barspeed = 5;
+let point = 0;
 
 function setup(){
-    createCanvas(800,600);
-
+    createCanvas(400,600);
+    y = height-30;
 
 
 
@@ -28,8 +37,17 @@ function setup(){
 
 function draw(){
     background(0);
-    ellipse(x, y, 120);
-    
+    fill(255,60,80);
+    ellipse(ex, ey, er)
+    fill(255);
+    rect(x, y, rwidth, rheight);
+    // testmode();   
+    textSize(32)
+    text(point, 20,50);
+    checkSide();
+    checkKill();
+    ex += exs;
+    ey += eys;
 }
 
 
@@ -55,19 +73,53 @@ function gotData(data){
 
     function checkDirection(dir){
         if(dir == 'right'){
-            x++;
+            x+=barspeed;
             
         }
-        if(dir == 'up'){
-            y--;
+        // if(dir == 'up'){
+        //     y-=barspeed;
             
-        }
+        // }
         if(dir == 'left'){
-            x--;
+            x-=barspeed;
             
         }
-        if(dir == 'down'){
-            y++;
+        // if(dir == 'down'){
+        //     y+=barspeed;
 
+        // }
+    }
+
+
+
+function checkSide(){
+    if (ex+er/2 > width || ex-er/2<0){
+        exs *= -1;
+    }  
+    if (ey+er/2 > height || ey-er/2<0){
+        eys *= -1;
+    }  
+}
+
+
+function checkKill(){
+    if (ex >= x && ex <= (x + rwidth)){
+        if(ey >= y && ey <= (y + rheight)){
+            kill();
         }
     }
+}
+
+
+// function testmode(){
+//     text(x+'x : y'+y,100,200);
+//     text(ex+'ex : ey'+ey,100,500);    /...//will be enabled for testing
+
+// }
+
+
+
+function kill(){
+    eys *= -1;
+    point++;
+}

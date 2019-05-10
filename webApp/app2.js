@@ -2,7 +2,7 @@
 let s;
 let scl = 50;
 let food;
-playfield = 6/00;
+playfield = 600;
 
 // p5js Setup function - required
 

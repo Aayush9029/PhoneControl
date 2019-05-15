@@ -14,12 +14,12 @@ a{
 }
 .control{
     background: rgba(0, 0, 255, 0.397);
-    padding-top: 200px;
-    padding-bottom: 200px;
+    padding-top: 95px;
+    padding-bottom: 95px;
 }
 .game{
-    padding-top: 200px;
-    padding-bottom: 200px;
+    padding-top: 95px;
+    padding-bottom: 95px;
     background: rgba(0, 0, 255, 0.198);
 }
 

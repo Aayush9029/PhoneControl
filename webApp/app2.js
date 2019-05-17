@@ -1,6 +1,6 @@
 //Delcare Global Variables
 let s;
-let scl = 50;
+let scl = 10;
 let food;
 playfield = 600;
 
@@ -171,7 +171,7 @@ function Snake() {
 
 function gotData(data){
     //delete prev data...
-    
+
         let moves = data.val();
         let keys = Object.keys(moves);
         let lastItem = keys.length
@@ -182,28 +182,28 @@ function gotData(data){
 
         checkDirection(lastDirection)
     }
-    
+
     function errData(err){
         console.log(err);
     }
-    
+
 
 
     function checkDirection(dir){
         if(dir == 'right'){
             s.dir(1, 0); //goes right
             // console.log('rightt')
-            
+
         }
         if(dir == 'up'){
             s.dir(0, -1); //goes up
             // console.log('upp')
-            
+
         }
         if(dir == 'left'){
             s.dir(-1, 0); //goes left
             // console.log('leftt')
-            
+
         }
         if(dir == 'down'){
             s.dir(0, 1); //goes down
@@ -211,5 +211,3 @@ function gotData(data){
 
         }
     }
-
-

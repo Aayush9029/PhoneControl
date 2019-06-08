@@ -1,13 +1,13 @@
 //Delcare Global Variables
 let s;
-let scl = 10;
+let scl = 25;
 let food;
-playfield = 600;
+playfield = 700;
 
 // p5js Setup function - required
 
 function setup() {
-  createCanvas(playfield, 640);
+  createCanvas(playfield, 700);
   background(51);
   s = new Snake();
   frameRate (10);
@@ -32,8 +32,7 @@ ref.on('value', gotData, errData);
 // p5js Draw function - required
 
 function draw() {
-  background(51);
-  scoreboard();
+  background(14	,81	,89);
   if (s.eat(food)) {
     pickLocation();
   }
@@ -65,18 +64,6 @@ function pickLocation() {
 }
 
 // scoreboard
-
-function scoreboard() {
-  fill(0);
-  rect(0, 600, 600, 40);
-  fill(255);
-  textFont("Georgia");
-  textSize(18);
-  text("Score: ", 10, 625);
-  text("Highscore: ", 450, 625)
-  text(s.score, 70, 625);
-  text(s.highscore, 540, 625)
-}
 
 // CONTROLS function
 
@@ -155,7 +142,7 @@ function Snake() {
 
   }
   this.show = function(){
-    fill(255);
+    fill(118,	217	,185);
     for (var i = 0; i < this.tail.length; i++) {
         rect(this.tail[i].x, this.tail[i].y, scl, scl);
     }

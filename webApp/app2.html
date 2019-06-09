@@ -15,14 +15,24 @@
 <body>
     <style>
     body{
-        background: #020E17;
+        background: -webkit-linear-gradient(left, seagreen, rgba(0, 128, 128, 0.226));
     }
     canvas{
-        margin: 100px 100px;
+        margin: 100px 30%;
+
         box-shadow: 5px 5px 10px rgba(90, 238, 164, 0.513);
         padding: 2px;
-        background: #76D9B9;
     }
+    @media only screen and (max-width: 800px) {
+          body {
+            background-color: lightblue;
+            margin: 0 -190%;
+          }
+          canvas{
+            margin: 100px 40%;
+
+          }
+        }
         </style>
 </body>
 </html>

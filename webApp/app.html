@@ -10,9 +10,31 @@
     <script src="../p5/p5.js"></script>
     <!-- loading firebase database -->
     <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-
+<!-- pong game -->
 </head>
 <body>
-    
+    <style>
+        canvas{
+            margin: 200px 40%;
+            padding: 0px;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.513);
+        }
+        body{
+            overflow: hidden;
+            background: -webkit-linear-gradient(left, seagreen, teal);
+        }
+
+        @media only screen and (max-width: 800px) {
+          body {
+            background-color: lightblue;
+            margin: 100px -100%;
+          }
+          canvas{
+            margin: 100px 40%;
+
+          }
+        }
+
+    </style>
 </body>
 </html>

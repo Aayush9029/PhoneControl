@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>phoneControl</title>
     <!-- linking css -->
-    <link rel = 'stylesheet' href="main.css">
-    <script src = 'control2.js'></script>
+    <link rel="stylesheet" href="main.css" />
+    <script src="control2.js"></script>
     <!-- Adding p5 library -->
     <script src="../p5/p5.js"></script>
     <!-- Addinf firebase script -->
     <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-</head>
-<body>
-    <div class = 'holder'>
-
-        <button class = "up" onclick="up()">U</button>
-        <button class = "down" onclick="down()">D</button>
-        <button class = "left" onclick="left()">L</button>
-        <button class = "right" onclick="right()">R</button>
-        <button class = "a" onclick="console.log('a')">A</button>
-        <button class = "b" onclick="console.log('b')">B</button>
-    </div>
-</body>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td></td>
+        <td id="up"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="left"></td>
+        <td></td>
+        <td id="right"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td id="down"></td>
+        <td></td>
+      </tr>
+    </table>
+  </body>
 </html>

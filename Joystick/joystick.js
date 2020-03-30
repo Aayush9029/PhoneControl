@@ -27,11 +27,11 @@ function setup(){
         messagingSenderId: "99106327684"
     };
 
-    // firebase.initializeApp(config);
-    // database = firebase.database();
+    firebase.initializeApp(config);
+    database = firebase.database();
 
-    // var ref = database.ref('game');
-    // ref.on('value', gotData, errData);
+    var ref = database.ref('game');
+    ref.on('value', gotData, errData);
 }
 
 
@@ -118,17 +118,17 @@ function checkDir(){
 
 
 function sentData(direction){
-    // print(direction)
-    // var ref = database.ref('game');
-    // let data = {
-    //     direction: direction
-    // }
-    // var result = ref.push(data, dataSent);
-    // // console.log(result.key);
+    print(direction)
+    var ref = database.ref('game');
+    let data = {
+        direction: direction
+    }
+    var result = ref.push(data, dataSent);
+    // console.log(result.key);
 
-    // function dataSent(status){
-    //     // console.log(status)
-    // }
+    function dataSent(status){
+        // console.log(status)
+    }
 }
 
 

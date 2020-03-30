@@ -1,5 +1,5 @@
 # [PhoneControl](https://aayush9029.github.io/PhoneControl/)
-This is a web app, which let's user controll game elements wirelessly through out the world.
+A web app, which let's user play games wirelessly using a diffrent device through out the world. 
 
 1. Open the joystick or button controller in a mobile or web device
 

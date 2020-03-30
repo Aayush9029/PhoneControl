@@ -1,16 +1,16 @@
 //Delcare Global Variables
 let s;
-let scl = 25;
+const scl = 32;
 let food;
-playfield = 700;
-
+let isdarkMode = false;
+let cv
 // p5js Setup function - required
 
 function setup() {
-  createCanvas(playfield, 700);
-  background(51);
-  s = new Snake();
-  frameRate (10);
+   cv = createCanvas(640, 640);
+  cv.parent(document.getElementById("canvasParent"));
+    s = new Snake();
+  frameRate (7);
   pickLocation();
 
   let config = {
@@ -32,7 +32,7 @@ ref.on('value', gotData, errData);
 // p5js Draw function - required
 
 function draw() {
-  background(14	,81	,89);
+  background(25, 175);
   if (s.eat(food)) {
     pickLocation();
   }
@@ -40,18 +40,26 @@ function draw() {
   s.update();
   s.show();
 
+  // food red
   fill (255,0,100);
-  rect(food.x,food.y, scl, scl);
+  rect(food.x+5 , food.y + 5, scl - 10, scl - 10);
+
+  //shine on the food
+  fill (220,255,200, 175);
+  rect(food.x+scl/4, food.y + 15 / 2, 2, 5);
+
+  // food leaf
+  fill (0,255,100);
+  rect(food.x+scl/2, food.y - 5 / 2, 2, 10);
 }
 
 // Pick a location for food to appear
 
 function pickLocation() {
-  var cols = floor(playfield/scl);
-  var rows = floor(playfield/scl);
+  var cols = floor(width / scl);
+  var rows = floor(width / scl);
   food = createVector(floor(random(cols)), floor(random(rows)));
   food.mult(scl);
-
   // Check the food isn't appearing inside the tail
 
   for (var i = 0; i < s.tail.length; i++) {
@@ -62,8 +70,6 @@ function pickLocation() {
     }
   }
 }
-
-// scoreboard
 
 // CONTROLS function
 
@@ -81,120 +87,106 @@ function keyPressed() {
 
 // SNAKE OBJECT
 
-function Snake() {
-  this.x =0;
-  this.y =0;
-  this.xspeed = 1;
-  this.yspeed = 0;
-  this.total = 0;
-  this.tail = [];
-  this.score = 1;
-  this.highscore = 1;
+class Snake {
+  constructor(){
+    this.x = 0;
+    this.y = 0;
+    this.xspeed = 1;
+    this.yspeed = 0;
+    this.total = 0;
+    this.tail = [];
+  }
 
-  this.dir = function(x,y) {
+  dir (x,y) {
     this.xspeed = x;
     this.yspeed = y;
   }
 
-  this.eat = function(pos) {
+  eat (pos) {
     var d = dist(this.x, this.y, pos.x, pos.y);
     if (d < 1) {
       this.total++;
-      this.score++;
-      text(this.score, 70, 625);
-      if (this.score > this.highscore) {
-        this.highscore = this.score;
-      }
-      text(this.highscore, 540, 625);
       return true;
     } else {
       return false;
     }
   }
 
-  this.death = function() {
+  death() {
     for (var i = 0; i < this.tail.length; i++) {
       var pos = this.tail[i];
       var d = dist(this.x, this.y, pos.x, pos.y);
       if (d < 1) {
         this.total = 0;
-        this.score = 0;
         this.tail = [];
       }
     }
   }
 
-  this.update = function(){
+  update(){
     if (this.total === this.tail.length) {
       for (var i = 0; i < this.tail.length-1; i++) {
         this.tail[i] = this.tail[i+1];
-    }
-
+      }
     }
     this.tail[this.total-1] = createVector(this.x, this.y);
-
-    this.x = this.x + this.xspeed*scl;
-    this.y = this.y + this.yspeed*scl;
-
-    this.x = constrain(this.x, 0, playfield-scl);
-    this.y = constrain(this.y, 0, playfield-scl);
-
+    this.x = this.x + this.xspeed * scl;
+    this.y = this.y + this.yspeed * scl;
+    this.x = constrain(this.x, 0, width - scl);
+    this.y = constrain(this.y, 0, width - scl);
 
   }
-  this.show = function(){
-    fill(118,	217	,185);
+  show(){
+    noStroke()
+    fill(10, 255, 200, 200)
     for (var i = 0; i < this.tail.length; i++) {
         rect(this.tail[i].x, this.tail[i].y, scl, scl);
     }
-
     rect(this.x, this.y, scl, scl);
   }
 }
 
 
-
-
-
-
 function gotData(data){
-    //delete prev data...
+  let moves = data.val();
+  let keys = Object.keys(moves);
+  let lastItem = keys.length
+  let k = keys[lastItem-1];
+  let lastDirection = moves[k].direction;
+  checkDirection(lastDirection)
+}
 
-        let moves = data.val();
-        let keys = Object.keys(moves);
-        let lastItem = keys.length
-        let k = keys[lastItem-1];
-        // console.log(k);
-        let lastDirection = moves[k].direction;
-        // console.log(lastDirection)
-
-        checkDirection(lastDirection)
-    }
-
-    function errData(err){
-        console.log(err);
-    }
+function errData(err){
+  console.log(err);
+}
 
 
+function checkDirection(dir){
+  if(dir == 'right'){
+    s.dir(1, 0);
+  }
+  if(dir == 'up'){
+    s.dir(0, -1);
+  }
+  if(dir == 'left'){
+    s.dir(-1, 0);
+  }
+  if(dir == 'down'){
+    s.dir(0, 1);
+  }
+}
 
-    function checkDirection(dir){
-        if(dir == 'right'){
-            s.dir(1, 0); //goes right
-            // console.log('rightt')
+function toggleDarkMode() {
+  isdarkMode = isdarkMode ? false : true;
+  if (isdarkMode) {
+    document.getElementById("darkbtn").style.filter = "invert(100%)";
+    document.getElementById("body").style.backgroundColor = "#161616";
 
-        }
-        if(dir == 'up'){
-            s.dir(0, -1); //goes up
-            // console.log('upp')
+  } else {
+    document.getElementById("darkbtn").style.filter = "invert(0%)";
+    document.getElementById("body").style.backgroundColor = "#f1f2ec";
 
-        }
-        if(dir == 'left'){
-            s.dir(-1, 0); //goes left
-            // console.log('leftt')
+  }
+}
 
-        }
-        if(dir == 'down'){
-            s.dir(0, 1); //goes down
-            // console.log('downn')
 
-        }
-    }

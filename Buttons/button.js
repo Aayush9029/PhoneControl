@@ -20,19 +20,15 @@ function setup(){
 
 
 function right(){
-    // console.log('right');
     sentData('right')
 }
 function left(){
-    // console.log('left');
     sentData('left')
 }
 function down(){
-    // console.log('down');
     sentData('down')
 }
 function up(){
-    // console.log('up');
     sentData('up')
 }
 
@@ -43,8 +39,7 @@ function sentData(direction){
     let data = {
         direction: direction
     }
-    var result = ref.push(data, dataSent);
-    // console.log(result.key);
+   ref.push(data, dataSent);
 
     function dataSent(status){
         // console.log(status)

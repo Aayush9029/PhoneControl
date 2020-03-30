@@ -27,16 +27,16 @@ function setup(){
         messagingSenderId: "99106327684"
     };
 
-    firebase.initializeApp(config);
-    database = firebase.database();
+    // firebase.initializeApp(config);
+    // database = firebase.database();
 
-    var ref = database.ref('game');
-    ref.on('value', gotData, errData);
+    // var ref = database.ref('game');
+    // ref.on('value', gotData, errData);
 }
 
 
 function draw(){
-    background(0); 
+    background(25, 150); 
     // translate(width/2, height/2);
     right = false;
     left = false;
@@ -45,50 +45,50 @@ function draw(){
     // textSize(32);
     // text(x+'x  :  y'+y, 200, 200);
 
+    
     // for controller place holder
-    // fill(205,20,100,100);
+    fill(255, 75 - x/4, 50 + y/4, 50);
     ellipse(intX, intY, sizeC);
 
     noFill();
     stroke(255);
-    strokeWeight(sizeC/10);
+    strokeWeight(sizeC/50);
     ellipse(intX, intY, sizeC);
     
     if(mouseIsPressed){
-        strokeWeight(sizeC/3);
+        cursor("pointer")
+        strokeWeight(sizeC/4);
         line(intX, intY, mouseX, mouseY);
         x = mouseX;
         y = mouseY;
         checkDir();
 
-    }else
-    {   x =intX;
-        y =intY;
+    }else{           
+        cursor("default")
+        x = intX;
+        y = intY;
     }
+
+
+
     //for controler itself
     strokeWeight(0);
-    fill(255,20,100);
+    fill(255, 75 - x/4, 50 + y/4);
     ellipse(x, y, sizeC);
-
-   
     
-    //if mouse is pressed or screen is touched it sends data to firebase
+    //if mouse is moved
 
     if (mouseIsPressed){
         if(right){
-            // console.log('right');
             sentData('right')
         }
         if(left){
-            // console.log('left');
             sentData('left')
         }
         if(down){
-            // console.log('down');
             sentData('down')
         }
         if(up){
-            // console.log('up');
             sentData('up')
         }
     }
@@ -118,16 +118,17 @@ function checkDir(){
 
 
 function sentData(direction){
-    var ref = database.ref('game');
-    let data = {
-        direction: direction
-    }
-    var result = ref.push(data, dataSent);
-    // console.log(result.key);
+    // print(direction)
+    // var ref = database.ref('game');
+    // let data = {
+    //     direction: direction
+    // }
+    // var result = ref.push(data, dataSent);
+    // // console.log(result.key);
 
-    function dataSent(status){
-        // console.log(status)
-    }
+    // function dataSent(status){
+    //     // console.log(status)
+    // }
 }
 
 
